@@ -92,9 +92,6 @@ if __name__ == '__main__':
     if not args.finish:
         print("No finishing point was defined.")
         exit()
-    print(args.scenario, args.navmesh, args.grid_size,
-                      args.algorithm, args.heuristic,
-                      args.start, args.finish)
     run_path_planning(args.scenario, args.navmesh, args.grid_size,
                       args.algorithm, args.heuristic,
                       args.start, args.finish)

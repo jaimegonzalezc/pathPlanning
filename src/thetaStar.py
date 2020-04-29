@@ -119,32 +119,29 @@ def lineOfSight(current, node, grid):
         while x0 != x1:
             f += dy
             if f >= dx:
-                if grid(x0 + ((sx - 1) / 2), y0 + ((sy - 1) / 2)):
+                a = grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value
+                print(grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].point)
+                print(a)
+                if grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 1:
                     return False
                 y0 += sy
                 f -= dx
-            if f != 0 and grid(x0 + ((sx - 1) / 2), y0 + ((sy - 1) / 2)):
+            if f != 0 and grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 1:
                 return False
-            if dy == 0 and grid(x0 + ((sx - 1) / 2), y0) and grid(x0 + ((sx - 1) / 2), y0 - 1):
+            if dy == 0 and grid[x0 + ((sx - 1) // 2)][y0].value == 6 or grid[x0 + ((sx - 1) // 2)][y0].value ==1 and grid[x0 + ((sx - 1) // 2)][y0 - 1].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 - 1].value == 1:
                 return False
             x0 += sx
     else:
         while y0 != y1:
             f += dx
             if f >= dy:
-                if grid(x0 + ((sx - 1) / 2), y0 + ((sy - 1) / 2)):
+                if grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 1 :
                     return False
                 x0 += sx
                 f -= dy
-            if f != 0 and grid(x0 + ((sx - 1) / 2), y0 + ((sy - 1) / 2)):
+            if f != 0 and grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 1:
                 return False
-            if dx == 0 and grid(x0 + ((sx - 1) / 2), y0) and grid(x0 + ((sx - 1) / 2), y0 - 1):
+            if dx == 0 and grid[x0 + ((sx - 1) // 2)][y0].value == 6 or grid[x0 + ((sx - 1) // 2)][y0].value ==1 and grid[x0 + ((sx - 1) // 2)][y0 - 1].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 - 1].value == 1:
                 return False
             y0 += sy
     return True
-
-def euclideanDistance(p1, p2):
-    x1, y1 = p1.grid_point
-    x2, y2 = p2.grid_point
-    return math.sqrt(pow(x2-x1, 2) + pow(y2-y1, 2))
-

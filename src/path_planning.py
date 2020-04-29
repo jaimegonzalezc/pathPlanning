@@ -288,7 +288,6 @@ def run_path_planning(grid_sze, algo='A*', start=(1, 1), finish=(2,2), heur='nai
     npdata = np.rot90(npdata)
     npdata = np.flipud(npdata)
     grid = create_grid(npdata, grid_sze)
-    print(algo)
     res = generate_waypoints_list(algo, start, finish, grid, heur)
     npdata = np.flipud(npdata)
     npdata = np.rot90(npdata, k=3)
