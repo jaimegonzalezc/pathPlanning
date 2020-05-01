@@ -236,14 +236,20 @@ def generate_waypoints_list(algo, start, finish, grid, heur="naive"):
     global search_methods, expanded_nodes
     nodes = search_methods[algo](grid[start[0]][start[1]], grid[finish[0]][finish[1]], grid, heur)
     waypoints = []
+    lista = []
+    valores = []
     cost = 0
     for n in nodes:
         cost += n.value
         waypoints.append(n.point)
+        lista.append(n.grid_point)
+        valores.append(n.value)
     print("Planned path: ",waypoints)
     print("Path length: ", len(waypoints))
     print("Total path cost: ", cost)
     print("Total nodes expanded: ", expanded_nodes)
+    for i in range(len(lista)):
+        print(lista[i], " -> ", valores[i])
     return waypoints
 
 def generate_waypoints_list_mesh(algo, start, finish, mesh, heur="naive"):

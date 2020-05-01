@@ -26,21 +26,36 @@ __maintainer__ = "Mario Cobos Maestre"
 __status__ = "Development"
 __version__ = "0.0.1"
 
-
+import math
 import path_planning as pp
 
-def manhattan(point,point2):
+def manhattan(point, point2):
     """
         Function that performs Manhattan heuristic.
     """
-    return 0
+    x1, y1 = point.grid_point
+    x2, y2 = point2.grid_point
+    return math.fabs(x1-x2) + math.fabs(y1-y2)
 
 pp.register_heuristic('manhattan', manhattan)
+
+def octile(point, point2):
+    """
+        Function that performs Manhattan heuristic.
+    """
+    x1, y1 = point.grid_point
+    x2, y2 = point2.grid_point
+    grad_x = math.fabs(x1-x2)
+    grad_y = math.fabs(y1-y2)
+    return max(grad_x, grad_y) + (math.sqrt(2) * min(grad_x, grad_y))
+
+pp.register_heuristic('octile', octile)
 
 def naive(point, point2):
     """
         Function that performs a naive heuristic.
     """
+
     return 1
 
 pp.register_heuristic('naive', naive)
@@ -49,6 +64,8 @@ def euclidean(point, point2):
     """
         Function that performs euclidean heuristic.
     """
-    return 25
+    x1, y1 = point.grid_point
+    x2, y2 = point2.grid_point
+    return math.sqrt(pow(x2-x1, 2) + pow(y2-y1, 2))
 
 pp.register_heuristic('euclidean', euclidean)

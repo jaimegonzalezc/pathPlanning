@@ -121,6 +121,8 @@ def aStar(start, goal, grid, heur='naive'):
         closedset.add(current)
         #Loop through the node's children/siblings
         for node in children(current,grid):
+            print(node.grid_point)
+            print(node.value)
             #If it is already in the closed set, skip it
             if node in closedset:
                 continue

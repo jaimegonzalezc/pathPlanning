@@ -78,6 +78,7 @@ def thetaStar(start, goal, grid, heuristic):
             if node in closedset:
                 continue
             if node in openset:
+                print(lineOfSight(current, node, grid))
                 if lineOfSight(current, node, grid):
                     new_g = current.parent.G + current.parent.move_cost(node)
                     if node.G > new_g:
@@ -120,28 +121,28 @@ def lineOfSight(current, node, grid):
             f += dy
             if f >= dx:
                 a = grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value
-                print(grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].point)
-                print(a)
-                if grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 1:
+                """print(grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].point)
+                print(a)"""
+                if grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value >= 5:
                     return False
                 y0 += sy
                 f -= dx
-            if f != 0 and grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 1:
+            if f != 0 and grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value >=5:
                 return False
-            if dy == 0 and grid[x0 + ((sx - 1) // 2)][y0].value == 6 or grid[x0 + ((sx - 1) // 2)][y0].value ==1 and grid[x0 + ((sx - 1) // 2)][y0 - 1].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 - 1].value == 1:
+            if dy == 0 and grid[x0 + ((sx - 1) // 2)][y0].value >=5 and grid[x0 + ((sx - 1) // 2)][y0 - 1].value >=5:
                 return False
             x0 += sx
     else:
         while y0 != y1:
             f += dx
             if f >= dy:
-                if grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 1 :
+                if grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value >=5:
                     return False
                 x0 += sx
                 f -= dy
-            if f != 0 and grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value == 1:
+            if f != 0 and grid[x0 + ((sx - 1) // 2)][y0 + ((sy - 1) // 2)].value >=5:
                 return False
-            if dx == 0 and grid[x0 + ((sx - 1) // 2)][y0].value == 6 or grid[x0 + ((sx - 1) // 2)][y0].value ==1 and grid[x0 + ((sx - 1) // 2)][y0 - 1].value == 6 or grid[x0 + ((sx - 1) // 2)][y0 - 1].value == 1:
+            if dx == 0 and grid[x0 + ((sx - 1) // 2)][y0].value >=5 and grid[x0 + ((sx - 1) // 2)][y0 - 1].value >=5:
                 return False
             y0 += sy
     return True
