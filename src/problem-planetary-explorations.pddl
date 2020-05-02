@@ -1,0 +1,27 @@
+﻿(define (problem problem-planetary-explorations)
+    (:domain planetary-explorations)
+    (:objects
+        r1 - rover
+        P1002 P2213 P0508 P0104 - point
+    )
+    (:init
+        (= (battery-level r1) 20)
+        (is_on r1 P1002)
+	(=(total_battery_used r1) 0)
+	(= (distance P1002 P2213) 5)
+(= (distance P1002 P0508) 10)
+(= (distance P1002 P0104) 15)
+(= (distance P2213 P1002) 5)
+(= (distance P2213 P0508) 5)
+(= (distance P2213 P0104) 10)
+(= (distance P0508 P1002) 10)
+(= (distance P0508 P2213) 5)
+(= (distance P0508 P0104) 5)
+(= (distance P0104 P1002) 30)
+(= (distance P0104 P2213) 20)
+(= (distance P0104 P0508) 5)
+(= (speed r1) 1)
+    )
+    (:goal (and(is_on r1 P1002)(has_drilled r1 P1002) (has_analized r1 P0104)(has_comunicated r1 P1002)(has_drilled r1 P2213)(has_analized r1 P0508)(has_taken_picture r1 P0104)))
+(:metric minimize (total_battery_used r1))
+)
